@@ -1,0 +1,12 @@
+<div fxLayout="column">
+  <mat-toolbar color="primary" fxLayoutAlign="center center" fxFlex.xs="100">
+    <div fxLayout="row" fxFlex.xs="100" fxFlex="70">
+      <a [routerLink]="['/index']">
+        <mat-icon *ngIf="router.url !== '/index'" >arrow_back_ios</mat-icon>
+        <span>{{title}}</span>
+      </a>
+    </div>
+  </mat-toolbar>
+  <br>
+  <router-outlet></router-outlet>
+</div>

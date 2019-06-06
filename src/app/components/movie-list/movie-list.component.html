@@ -1,0 +1,44 @@
+<div fxLayoutAlign="center center">
+  <div fxLayout="column" fxFlex.xs="100" fxFlex="70">
+    <mat-card *ngFor="let movie of _movieList" fxLayout="row" fxLayoutGap="3%"
+              [@EnterLeave]="'flyIn'">
+      <img class="movie-poster"
+           [src]="_imgUrl + movie.poster_path">
+      <div fxFlex="100">
+        <mat-card-title-group>
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutGap="1%">
+            <span fxFlex="80">{{movie.title}}</span>
+            <button mat-mini-fab color="primary"
+                    (click)="openEditor(movie)">
+              <mat-icon>mode_edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn"
+                    (click)="deleteMovie(movie)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent"
+                    (click)="saveMovie(movie)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-card-title>
+          <mat-card-subtitle>{{movie.original_title}} ({{movie.release_date}})</mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-content fxLayout="column" fxLayoutGap="3%">
+          <div fxLayoutGap="0.5%">
+            <button mat-raised-button *ngFor="let genreKey of movie.genre_ids">{{getGenre(genreKey)}}</button>
+          </div>
+          <div *ngIf="movie.unique_genre_ids && movie.unique_genre_ids.length > 0" fxLayoutGap="0.5%">
+            <button mat-raised-button *ngFor="let uniqueGenreKey of movie.unique_genre_ids">{{getUniqueGenre(uniqueGenreKey)}}</button>
+          </div>
+          <span>{{movie.overview}}</span>
+          <mat-chip-list fxLayoutGap="6%">
+            <mat-chip *ngFor="let video of (movie.videos ? movie.videos.slice(0,6): [])"
+                      [selectable]="true"
+                      (click)="openVideo(video)">
+              <mat-icon>play_arrow</mat-icon>Play trailer</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
+</div>

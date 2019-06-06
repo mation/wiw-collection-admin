@@ -1,0 +1,13 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+body{
+  font-family: Roboto, Arial, sans-serif;
+  display: block;
+  margin: 0px;
+}
+
+.cdk-overlay-pane{
+  max-width: 90vw !important;
+}
+
+

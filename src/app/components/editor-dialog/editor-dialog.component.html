@@ -1,0 +1,28 @@
+<mat-card fxLayout="column" fxFlex.xs="340px" fxFlex="450px" fxLayoutGap="3%">
+  <mat-card-header>
+    <mat-card-title>{{movie.title}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content fxLayout="column" fxLayoutGap="3%">
+    <mat-form-field>
+      <mat-label>Unique Genre</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let genre of genresService.uniqueGenres | keyvalue"
+                    [value]="genre.key"
+                    (onSelectionChange)="onGenreSelectionChange($event)">
+          {{genre.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-chip-list *ngIf="movie.unique_genre_ids">
+      <mat-chip *ngFor="let genreKey of movie.unique_genre_ids"
+                [selectable]="_selectable"
+                [removable]="_removable"
+                (removed)="remove(genreKey)">
+        {{getGenreValue(genreKey)}}
+        <mat-icon matChipRemove *ngIf="_removable">cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+</mat-card>
+
+

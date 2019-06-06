@@ -1,0 +1,21 @@
+{
+  "debugMode": false,
+  "debugFilePath" : "assets/mock_movie_data.json",
+
+  "collectionController": {
+    "url": "http://68.183.221.238:4100",
+    "getMoviesPath": "/v1/get/movies",
+    "findMoviesPath": "/v1/find/movies",
+    "addMoviePath" : "/v1/add/movie"
+  },
+
+  "youtube": {
+    "url" : "//www.youtube.com/embed/"
+  },
+
+  "tmdb": {
+    "imageUrl": "https://image.tmdb.org/t/p/w185/"
+  },
+
+  "totalPages" : 200
+}

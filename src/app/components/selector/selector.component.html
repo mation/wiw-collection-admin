@@ -1,0 +1,50 @@
+<div fxLayoutAlign="center center">
+  <mat-progress-bar *ngIf="!_isCollapsed"
+                    color="primary" mode="indeterminate" fxFlex.xs="100" fxFlex="70">
+  </mat-progress-bar>
+  <div *ngIf="_isCollapsed"
+       [@fadeInOut]="_state"
+       (@fadeInOut.done)="animEnd($event)"
+       fxLayout="column" fxLayoutGap="2%" fxFlex="500px" fxFlex.xs="340px">
+    <mat-card>
+      <mat-card-content fxLayout ="row" fxLayoutAlign="space-between">
+        <span fxFlex="50" fxFlexAlign="center">Select language :</span>
+        <mat-select [(value)]="_selectedLang"
+                    (selectionChange)="changeLang($event.value)"
+                    fxFlex="62px">
+         <mat-option *ngFor="let lang of _languages" [value]="lang">
+            {{lang}}
+          </mat-option>
+        </mat-select>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-content fxLayout="row" fxLayoutAlign="space-between">
+        <div fxLayout="row" fxFlex="65" fxFlexAlign="center" fxLayoutGap="3%">
+          <span fxFlexAlign="center" >Get popular movies </span>
+          <span fxFlexAlign="center">page : </span>
+          <mat-select [(value)]="_selectedPage"
+                      (selectionChange)="changePage($event.value)"
+                      fxFlex="42px" fxFlexAlign="center" >
+            <mat-option *ngFor="let page of _pages" [value]="page">
+              {{page}}
+            </mat-option>
+          </mat-select>
+        </div>
+        <button button="submit" mat-raised-button color="primary"
+                (click)="getMovieList()">
+          Movie List</button>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-content fxLayout="row" fxLayoutGap="10px"fxLayoutAlign="space-between">
+        <input fxFlex="70" matInput placeholder="Search Movie" type="text"
+               [(ngModel)]="_movieTitle" >
+        <button button="submit" mat-raised-button color="primary"
+                (click)="findMovie()">
+          Search</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
